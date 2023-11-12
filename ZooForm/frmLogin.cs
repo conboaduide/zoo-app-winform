@@ -30,6 +30,10 @@ namespace ZooForm
                 main.Show();
                 this.Hide();
             }
+            else
+            {
+                MessageBox.Show("Invalid username or password.");
+            }
         }
     }
 }

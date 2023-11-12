@@ -23,17 +23,17 @@ namespace ZooForm
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            if (user.UserRoles.Where(role => role.RoleId == 1) != null)
+            if (user.Role == 1)
             {// user is admin
-                
+
             }
-            else if (user.UserRoles.Where(role => role.RoleId == 2) != null)
+            else if (user.Role == 2)
             {// user is staff
                 shopToolStripMenuItem.Visible = false;
                 userToolStripMenuItem.Visible = false;
                 animalToolStripMenuItem.Visible = false;
             }
-            else if (user.UserRoles.Where(role => role.RoleId == 3) != null)
+            else if (user.Role == 3)
             {// user is zoo trainer
                 userToolStripMenuItem.Visible = false;
                 shopToolStripMenuItem.Visible = false;
@@ -59,7 +59,9 @@ namespace ZooForm
 
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmUserManagement f = new frmUserManagement();
+            f.Show();
+            f.MdiParent = this;
         }
 
         private void ticketToolStripMenuItem_Click(object sender, EventArgs e)

@@ -10,5 +10,13 @@ namespace Repository
     public interface IUserRepository
     {
         public User CheckLogin(string username, string password);
+
+        public List<User> GetUsers();
+
+        public void CreateUser(User user);
+
+        public void UpdateUser(User user);
+
+        public void DeleteUser(int id);
     }
 }

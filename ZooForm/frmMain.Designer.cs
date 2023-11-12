@@ -30,8 +30,8 @@
         {
             menuStrip1 = new MenuStrip();
             shopToolStripMenuItem = new ToolStripMenuItem();
-            userToolStripMenuItem = new ToolStripMenuItem();
             orderToolStripMenuItem = new ToolStripMenuItem();
+            userToolStripMenuItem = new ToolStripMenuItem();
             ticketToolStripMenuItem = new ToolStripMenuItem();
             animalToolStripMenuItem = new ToolStripMenuItem();
             logOutToolStripMenuItem = new ToolStripMenuItem();
@@ -55,19 +55,19 @@
             shopToolStripMenuItem.Text = "Shop";
             shopToolStripMenuItem.Click += shopToolStripMenuItem_Click;
             // 
-            // userToolStripMenuItem
-            // 
-            userToolStripMenuItem.Name = "userToolStripMenuItem";
-            userToolStripMenuItem.Size = new Size(52, 24);
-            userToolStripMenuItem.Text = "User";
-            userToolStripMenuItem.Click += userToolStripMenuItem_Click;
-            // 
             // orderToolStripMenuItem
             // 
             orderToolStripMenuItem.Name = "orderToolStripMenuItem";
             orderToolStripMenuItem.Size = new Size(61, 24);
             orderToolStripMenuItem.Text = "Order";
             orderToolStripMenuItem.Click += orderToolStripMenuItem_Click;
+            // 
+            // userToolStripMenuItem
+            // 
+            userToolStripMenuItem.Name = "userToolStripMenuItem";
+            userToolStripMenuItem.Size = new Size(52, 24);
+            userToolStripMenuItem.Text = "User";
+            userToolStripMenuItem.Click += userToolStripMenuItem_Click;
             // 
             // ticketToolStripMenuItem
             // 
@@ -96,6 +96,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
+            IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "frmMain";
             Text = "frmMain";

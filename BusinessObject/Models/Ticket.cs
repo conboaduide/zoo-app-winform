@@ -7,19 +7,11 @@ public partial class Ticket
 {
     public int Id { get; set; }
 
-    public string? Description { get; set; }
+    public string Type { get; set; } = null!;
 
-    public string? ImgUrl { get; set; }
+    public decimal Price { get; set; }
 
-    public string? Name { get; set; }
-
-    public double? Price { get; set; }
-
-    public bool? Status { get; set; }
-
-    public string? Type { get; set; }
+    public bool Status { get; set; }
 
     public DateTime? CreatedDate { get; set; }
-
-    public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 }
