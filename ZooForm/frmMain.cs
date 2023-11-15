@@ -49,12 +49,16 @@ namespace ZooForm
 
         private void shopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmShop f = new frmShop();
+            f.Show();
+            f.MdiParent = this;
         }
 
         private void orderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmOrderManagement f = new frmOrderManagement();
+            f.Show();
+            f.MdiParent = this;
         }
 
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
@@ -66,12 +70,16 @@ namespace ZooForm
 
         private void ticketToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmTicketManagement f = new frmTicketManagement();
+            f.Show();
+            f.MdiParent = this;
         }
 
         private void animalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmAnimalManagement f = new frmAnimalManagement();
+            f.Show();
+            f.MdiParent = this;
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
