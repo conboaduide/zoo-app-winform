@@ -52,6 +52,8 @@
             txtEmail = new TextBox();
             radioTrue = new RadioButton();
             radioFalse = new RadioButton();
+            txtPassword = new Label();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
             SuspendLayout();
             // 
@@ -279,11 +281,31 @@
             radioFalse.UseVisualStyleBackColor = true;
             radioFalse.CheckedChanged += radioFalse_CheckedChanged;
             // 
+            // txtPassword
+            // 
+            txtPassword.AutoSize = true;
+            txtPassword.Location = new Point(546, 318);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(70, 20);
+            txtPassword.TabIndex = 64;
+            txtPassword.Text = "Password";
+            // 
+            // textBox1
+            // 
+            textBox1.Enabled = false;
+            textBox1.Location = new Point(689, 315);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(265, 27);
+            textBox1.TabIndex = 63;
+            textBox1.UseSystemPasswordChar = true;
+            // 
             // frmUserManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(982, 473);
+            Controls.Add(txtPassword);
+            Controls.Add(textBox1);
             Controls.Add(radioFalse);
             Controls.Add(radioTrue);
             Controls.Add(label5);
@@ -309,7 +331,7 @@
             Controls.Add(label1);
             Controls.Add(dgv);
             Name = "frmUserManagement";
-            Text = "frmUserManagement";
+            Text = "User";
             Load += frmUserManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
             ResumeLayout(false);
@@ -343,5 +365,7 @@
         private TextBox txtEmail;
         private RadioButton radioTrue;
         private RadioButton radioFalse;
+        private Label txtPassword;
+        private TextBox textBox1;
     }
 }

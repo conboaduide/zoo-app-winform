@@ -7,8 +7,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ZooForm
 {
@@ -53,6 +55,8 @@ namespace ZooForm
 
             dgv.DataSource = null;
             dgv.DataSource = source;
+
+            dgv.Columns[2].Visible = false;
         }
 
         private void LoadRoleData()
@@ -98,14 +102,17 @@ namespace ZooForm
                 isCreating = true;
                 ClearFields();
                 EnableText(true);
+                txtPassword.Enabled = false;
                 btnCreate.Text = "Cancel";
             }
             else
             {
                 // Switch back to normal mode
+                ClearFields();
                 isCreating = false;
                 EnableText(false);
                 btnCreate.Text = "Create";
+                txtPassword.Enabled = true;
             }
         }
 
@@ -156,7 +163,7 @@ namespace ZooForm
                 {
                     user.Status = false;
                 }
- 
+
                 // Determine whether to create or update based on the existence of the user ID
                 if (string.IsNullOrEmpty(txtId.Text))
                 {
@@ -174,11 +181,13 @@ namespace ZooForm
                 if (createOrUpdate)
                 {
                     btnCreate.Text = "Create";
-                } else
+                }
+                else
                 {
                     btnUpdate.Text = "Update";
                 }
             }
+            txtPassword.Enabled = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -216,7 +225,7 @@ namespace ZooForm
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void radioTrue_CheckedChanged(object sender, EventArgs e)
@@ -245,9 +254,21 @@ namespace ZooForm
 
         private bool ValidateInput()
         {
-            // Implement validation logic for user input
-            // Return true if input is valid, false otherwise
-            return true; // Placeholder, replace with your validation logic
+            if (txtUsername.Text.Length < 3 || txtUsername.Text.Length > 20)
+            {
+                return false;
+            }
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(txtEmail.Text);
+            if (!match.Success)
+            {
+                return false;
+            }
+            if (txtPassword.Text.Length < 8)
+            {
+                return false;
+            }
+            return true;
         }
     }
 

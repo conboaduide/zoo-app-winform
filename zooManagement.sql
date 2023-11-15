@@ -1,107 +1,129 @@
-create database ZooManagement
+USE [master]
+GO
+/****** Object:  Database [ZooManagement]    Script Date: 11/15/2023 9:34:35 PM ******/
+CREATE DATABASE [ZooManagement]
 
-use ZooManagement
+USE [ZooManagement]
+GO
 
-create table [user] (
-	id int identity(1,1) primary key,
-	username varchar(20), 
-	firstname varchar(20),
-	lastname varchar(20),
-	sex bit,
-	dateOfBirth datetime2(6),
-	address varchar(30),
-	email varchar(30),
-	nationality varchar(20),
-	phone varchar(20),
-	password varchar(20),
-	created_date datetime2(6) default getdate(),
-	status bit,
-	avatar_url varchar(max),
-	reset_token varchar(30),
-)
-create table [role](
-	 id int primary key identity(1,1),
-	name varchar(20)
-)
+CREATE TABLE [dbo].[animal](
+	[id] [int] NOT NULL,
+	[name] [varchar](50) NULL,
+	[species] [varchar](50) NULL,
+	[location] [varchar](50) NULL,
+	[class] [varchar](50) NULL,
+	[createdDate] [date] NULL,
+	[status] [bit] NULL,
+ CONSTRAINT [PK_animal] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-create table [user_role](
-	id int primary key identity(1,1),
-	user_id int foreign key references [user](id),
-	role_id int foreign key references [role](id),
-)
+CREATE TABLE [dbo].[animal_cage](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[animalId] [int] NULL,
+	[cageId] [int] NULL,
+	[moveInDate] [date] NULL,
+	[moveOutDate] [date] NULL,
+ CONSTRAINT [PK_aninal_cage] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-create table ticket (
-	id int primary key identity(1,1),
-	description varchar(50),
-	img_url varchar(max),
-	name varchar(20),
-	price float,
-	status bit,
-	type varchar(20),
-	created_date datetime2(6) default getDate(),
-)
+CREATE TABLE [dbo].[animal_trainer](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[animalId] [int] NULL,
+	[zooTrainerId] [int] NULL,
+ CONSTRAINT [PK_animal_trainer] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-create table [order](
-	id int primary key identity(1,1),
-	payment_method varchar(20),
-	status bit,
-	total float,
-	customer_id int foreign key references [user](id),
-	created_date datetime2(6) default getDate(),
-)
+CREATE TABLE [dbo].[cage](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](50) NULL,
+	[capacity] [int] NOT NULL,
+	[createdDate] [date] NULL,
+	[status] [bit] NULL,
+ CONSTRAINT [PK_cage] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-create table order_detail(
-	id int primary key identity(1,1),
-	is_checked bit,
-	checked_by int foreign key references [user](id),
-	orderId int foreign key references [user](id),
-	ticketId int foreign key references ticket(id),
-)
+CREATE TABLE [dbo].[order](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[customerId] [int] NOT NULL,
+	[createdDate] [date] NULL,
+	[total] [money] NULL,
+ CONSTRAINT [PK_order] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-create table animal(
- id int primary key identity(1,1),
- arival_date datetime2(6),
- created_date datetime2(6),
- date_of_birth datetime2(6),
- date_of_death datetime2(6),
- img_url varchar(max),
- name varchar(20),
- origin varchar(20),
- sex bit,
- created_by int foreign key references [user](id),
-)
+CREATE TABLE [dbo].[order_detail](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[orderId] [int] NOT NULL,
+	[ticketId] [int] NOT NULL,
+	[price] [money] NOT NULL,
+	[status] [bit] NOT NULL,
+ CONSTRAINT [PK_order_detail] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-create table animal_trainer_assignor(
-	id int primary key identity(1,1),
-	animal_id int foreign key references animal(id),
-	assigned_by int foreign key references [user](id),
-	trainer_id int foreign key references [user](id),
-)
-create table food (
-	id int primary key identity(1,1),
-	name varchar(20),
-	type varchar(20),
-	created_date datetime2(6) default getDate(),
-	created_by int foreign key references [user](id)
-)
-create table diet (
-	id int primary key identity(1,1),
-	created_date datetime2(6),
-	type varchar(20),
-	created_by int foreign key references [user](id),
-)
-create table diet_food(
-	id int primary key identity(1,1),
-	diet_id int foreign key references diet(id),
-	food_id int foreign key references food(id),
-)
-create table feeding_schedule (
-	id int primary key identity(1,1),
-	conformation_img_url varchar(max),
-	created_date datetime2(6),
-	fed bit,
-	fed_time datetime2(6),
-	feeding_time datetime2(6),
-	animal_id int foreign key references animal(id),
-	diet_id int foreign key references diet(id),
-)
+CREATE TABLE [dbo].[ticket](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[type] [varchar](50) NOT NULL,
+	[price] [money] NOT NULL,
+	[status] [bit] NOT NULL,
+	[createdDate] [date] NULL,
+ CONSTRAINT [PK_ticket] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[user](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[username] [varchar](50) NOT NULL,
+	[password] [varchar](50) NOT NULL,
+	[role] [int] NOT NULL,
+	[email] [varchar](50) NULL,
+	[status] [bit] NOT NULL,
+	[createdDate] [date] NULL,
+ CONSTRAINT [PK_user] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[animal] ADD  CONSTRAINT [DF_animal_createdDate]  DEFAULT (getdate()) FOR [createdDate]
+GO
+ALTER TABLE [dbo].[animal_cage] ADD  CONSTRAINT [DF_aninal_cage_moveInDate]  DEFAULT (getdate()) FOR [moveInDate]
+GO
+ALTER TABLE [dbo].[cage] ADD  CONSTRAINT [DF_cage_createdDate]  DEFAULT (getdate()) FOR [createdDate]
+GO
+ALTER TABLE [dbo].[order] ADD  CONSTRAINT [DF_order_createdDate]  DEFAULT (getdate()) FOR [createdDate]
+GO
+ALTER TABLE [dbo].[ticket] ADD  CONSTRAINT [DF_ticket_createdDate]  DEFAULT (getdate()) FOR [createdDate]
+GO
+ALTER TABLE [dbo].[user] ADD  CONSTRAINT [DF_user_createdDate]  DEFAULT (getdate()) FOR [createdDate]
+GO
+ALTER TABLE [dbo].[order]  WITH CHECK ADD  CONSTRAINT [FK_CustomerId_UserId] FOREIGN KEY([id])
+REFERENCES [dbo].[order] ([id])
+GO
+ALTER TABLE [dbo].[order] CHECK CONSTRAINT [FK_CustomerId_UserId]
+GO
