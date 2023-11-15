@@ -3,15 +3,11 @@ using System.Collections.Generic;
 
 namespace BusinessObject.Models;
 
-public partial class Cage
+public partial class Role
 {
     public int Id { get; set; }
 
     public string? Name { get; set; }
 
-    public int Capacity { get; set; }
-
-    public DateTime? CreatedDate { get; set; }
-
-    public bool? Status { get; set; }
+    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }
