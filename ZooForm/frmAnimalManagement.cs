@@ -131,7 +131,14 @@ namespace ZooForm
                 btnUpdate.Text = "Update";
             }
         }
+        private bool IsIdValid(int id)
+        {
+            // Get the list of existing animal IDs from your repository or data source
+            List<int> existingIds = _animalRepository.GetAnimals().Select(a => a.Id).ToList();
 
+            // Check if the provided ID already exists
+            return existingIds.Contains(id);
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             Animal animal = new Animal
@@ -162,6 +169,13 @@ namespace ZooForm
             // Determine whether to create or update based on the existence of the user ID
             if (createOrUpdate)
             {
+                // Check if the ID already exists before saving
+                if (IsIdValid(animal.Id))
+                {
+                    MessageBox.Show("Animal ID already exists. Please use a different ID.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return; // Stop further execution
+                }
+
                 _animalRepository.SaveAnimal(animal);
             }
             else
