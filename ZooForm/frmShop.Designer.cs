@@ -46,11 +46,11 @@
             // dgvShop
             // 
             dgvShop.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvShop.Location = new Point(12, 257);
+            dgvShop.Location = new Point(47, 253);
             dgvShop.Name = "dgvShop";
             dgvShop.RowHeadersWidth = 51;
             dgvShop.RowTemplate.Height = 29;
-            dgvShop.Size = new Size(469, 251);
+            dgvShop.Size = new Size(709, 251);
             dgvShop.TabIndex = 0;
             // 
             // Date
@@ -64,6 +64,7 @@
             // 
             // txtDatetime
             // 
+            txtDatetime.Enabled = false;
             txtDatetime.Location = new Point(105, 41);
             txtDatetime.Name = "txtDatetime";
             txtDatetime.Size = new Size(250, 27);
@@ -83,7 +84,7 @@
             // 
             txtCustomer.Location = new Point(125, 87);
             txtCustomer.Name = "txtCustomer";
-            txtCustomer.Size = new Size(226, 27);
+            txtCustomer.Size = new Size(230, 27);
             txtCustomer.TabIndex = 6;
             txtCustomer.TextChanged += txtCustomer_TextChanged;
             // 
@@ -98,34 +99,34 @@
             // 
             // txtItem
             // 
-            txtItem.Location = new Point(125, 138);
+            txtItem.Location = new Point(105, 138);
             txtItem.Name = "txtItem";
-            txtItem.Size = new Size(265, 27);
+            txtItem.Size = new Size(250, 27);
             txtItem.TabIndex = 6;
             txtItem.TextChanged += txtCustomer_TextChanged;
             // 
             // dgvOrder
             // 
             dgvOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrder.Location = new Point(456, 47);
+            dgvOrder.Location = new Point(399, 41);
             dgvOrder.Name = "dgvOrder";
             dgvOrder.RowHeadersWidth = 51;
             dgvOrder.RowTemplate.Height = 29;
-            dgvOrder.Size = new Size(300, 188);
+            dgvOrder.Size = new Size(357, 124);
             dgvOrder.TabIndex = 7;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(457, 14);
+            label3.Location = new Point(399, 9);
             label3.Name = "label3";
-            label3.Size = new Size(47, 20);
+            label3.Size = new Size(36, 20);
             label3.TabIndex = 8;
-            label3.Text = "Order";
+            label3.Text = "Cart";
             // 
             // addBtn
             // 
-            addBtn.Location = new Point(296, 193);
+            addBtn.Location = new Point(261, 198);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(94, 29);
             addBtn.TabIndex = 9;
@@ -135,7 +136,7 @@
             // 
             // confirmBtn
             // 
-            confirmBtn.Location = new Point(662, 257);
+            confirmBtn.Location = new Point(662, 198);
             confirmBtn.Name = "confirmBtn";
             confirmBtn.Size = new Size(94, 29);
             confirmBtn.TabIndex = 10;

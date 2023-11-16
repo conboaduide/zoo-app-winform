@@ -112,13 +112,13 @@ namespace ZooForm
             orderRepo.SaveOrder(order);
 
             var tmp = orderRepo.GetOrder().Last();
-            foreach(OrderDetailDTO order1 in orderDetails)
+            foreach (OrderDetailDTO order1 in orderDetails)
             {
-               for(int i = 0; i < order1.Quantity; i++)
+                for (int i = 0; i < order1.Quantity; i++)
                 {
                     total += order1.Price;
                     OrderDetail order2 = new OrderDetail
-                    {  
+                    {
                         OrderId = tmp.Id,
                         Price = order1.Price,
                         Status = false,
