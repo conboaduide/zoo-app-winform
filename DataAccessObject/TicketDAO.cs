@@ -25,6 +25,12 @@ namespace DataAccessObject
                 return instance;
             }
         }
+        public Ticket GetTicketById(int Id)
+        {
+            using var db = new ZooManagementContext();
+            var ticket = db.Tickets.Where(t => t.Id == Id).FirstOrDefault();
+            return ticket;
+        }
         public List<Ticket> GetTickets()
         {
             using var db = new ZooManagementContext();
