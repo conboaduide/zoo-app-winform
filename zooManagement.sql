@@ -1,3 +1,4 @@
+drop database [ZooManagement]
 USE [master]
 GO
 /****** Object:  Database [ZooManagement]    Script Date: 11/15/2023 9:34:35 PM ******/

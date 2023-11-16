@@ -39,8 +39,23 @@ namespace DataAccessObject
         public void UpdateAnimal(Animal animal)
         {
             using var db = new ZooManagementContext();
-            db.Animals.Update(animal);
-            db.SaveChanges();
+            {
+                var existingAnimal = db.Animals.Find(animal.Id);
+                if (existingAnimal != null)
+                {
+                    // Update properties of the existing user
+                    existingAnimal.Name = animal.Name;
+                    existingAnimal.Species = animal.Species;
+                    existingAnimal.Location = animal.Location;
+                    existingAnimal.Class = animal.Class;
+                    existingAnimal.Status = animal.Status;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    // User not found, handle accordingly (e.g., throw an exception or log a message)
+                }
+            }
         }
 
         public void DeleteAnimal(int id)
