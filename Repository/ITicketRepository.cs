@@ -13,5 +13,6 @@ namespace Repository
         public void DeleteTicket(int id);
         public void UpdateTicket(Ticket ticket);
         public List<Ticket> GetTickets();
+        public Ticket GetTicketById(int Id);
     }
 }

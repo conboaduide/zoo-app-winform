@@ -13,6 +13,9 @@ namespace Repository
         public void DeleteTicket(int id)
         => TicketDAO.Instance.DeleteTicket(id);
 
+        public Ticket GetTicketById(int Id)
+        => TicketDAO.Instance.GetTicketById(Id);
+
         public List<Ticket> GetTickets()
         => TicketDAO.Instance.GetTickets();
 
