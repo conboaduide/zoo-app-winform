@@ -68,5 +68,12 @@ namespace DataAccessObject
                 db.SaveChanges();
             }
         }
+        public List<Animal> SearchAnimalByName(string searchTerm)
+        {
+            using var db = new ZooManagementContext();
+            return db.Animals
+                .Where(animal => animal.Name.ToLower().Contains(searchTerm.ToLower()))
+                .ToList();
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Repository
         public void DeleteAnimal(int id);
         public void UpdateAnimal(Animal animal);
         public List<Animal> GetAnimals();
+        public List<Animal> SearchAnimalByName(string name);
     }
 }

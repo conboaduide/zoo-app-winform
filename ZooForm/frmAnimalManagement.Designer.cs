@@ -103,6 +103,7 @@
             btnReset.TabIndex = 80;
             btnReset.Text = "Reset";
             btnReset.UseVisualStyleBackColor = true;
+            btnReset.Click += btnReset_Click;
             // 
             // label10
             // 
@@ -157,6 +158,7 @@
             btnSearch.TabIndex = 74;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // btnExit
             // 
@@ -237,6 +239,7 @@
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(243, 27);
             txtSearch.TabIndex = 65;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // label1
             // 

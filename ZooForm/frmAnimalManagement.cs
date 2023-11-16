@@ -252,5 +252,43 @@ namespace ZooForm
         {
 
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                List<Animal> animals = _animalRepository.GetAnimals();
+                List<Animal> searchResult = animals.Where(a => a.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+
+                // Display search results in DataGridView
+                BindingSource source = new BindingSource();
+                source.DataSource = searchResult;
+
+                dgv.DataSource = null;
+                dgv.DataSource = source;
+
+                // Optionally, hide or show specific columns in the DataGridView if needed
+                dgv.Columns[2].Visible = false; // Adjust column index as per your data
+
+                // Clear data bindings for other fields
+                ClearFieldsDataBinding();
+            }
+            else
+            {
+                // If the search term is empty, reload all animals
+                LoadAnimalData();
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            LoadAnimalData();
+        }
     }
 }

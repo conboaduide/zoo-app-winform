@@ -19,6 +19,9 @@ namespace Repository
         public void SaveAnimal(Animal animal)
         => AnimalDAO.Instance.SaveAnimal(animal);
 
+        public List<Animal> SearchAnimalByName(string name)
+        => AnimalDAO.Instance.SearchAnimalByName(name);
+
         public void UpdateAnimal(Animal animal)
         => AnimalDAO.Instance.UpdateAnimal(animal);
     }
