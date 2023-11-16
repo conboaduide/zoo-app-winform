@@ -132,18 +132,15 @@ namespace ZooForm
             {
                 int orderId = int.Parse(txtID.Text);
 
-                // Fetch order details based on the order ID
                 var orderDetails = _orderRepository.GetOrderDetailsByOrderId(orderId);
 
-                // Prepare the message to display order details
                 StringBuilder messageBuilder = new StringBuilder();
                 foreach (var detail in orderDetails)
                 {
                     messageBuilder.AppendLine($"Order Id: {detail.OrderId}, Order Detail ID: {detail.Id}, Price: {detail.Price}, Ticket ID: {detail.TicketId}, Status: {detail.Status}");
-                    // Include other relevant details you want to display
+                    break;
                 }
 
-                // Show order details in a message box
                 MessageBox.Show(messageBuilder.ToString(), "Order Details");
             }
             catch (Exception ex)
