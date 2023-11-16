@@ -30,28 +30,24 @@
         {
             dtgvOrder = new DataGridView();
             label1 = new Label();
-            btnCreate = new Button();
+            button1 = new Button();
+            button2 = new Button();
             label2 = new Label();
-            cbTicket = new ComboBox();
-            txtPrice = new TextBox();
-            label3 = new Label();
-            btnDelete = new Button();
-            btnUpdate = new Button();
-            btnClear = new Button();
-            textBox1 = new TextBox();
-            txtOrderId = new Label();
+            txtID = new TextBox();
+            sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
+            btnShow = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgvOrder).BeginInit();
             SuspendLayout();
             // 
             // dtgvOrder
             // 
             dtgvOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvOrder.Location = new Point(319, 91);
+            dtgvOrder.Location = new Point(11, 131);
             dtgvOrder.Margin = new Padding(2);
             dtgvOrder.Name = "dtgvOrder";
             dtgvOrder.RowHeadersWidth = 62;
             dtgvOrder.RowTemplate.Height = 33;
-            dtgvOrder.Size = new Size(630, 499);
+            dtgvOrder.Size = new Size(938, 459);
             dtgvOrder.TabIndex = 0;
             dtgvOrder.CellClick += dtgvOrder_CellClick;
             dtgvOrder.CellContentClick += dataGridView1_CellContentClick;
@@ -66,108 +62,63 @@
             label1.TabIndex = 1;
             label1.Text = "Order Management";
             // 
-            // btnCreate
+            // button1
             // 
-            btnCreate.Location = new Point(12, 445);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(94, 29);
-            btnCreate.TabIndex = 2;
-            btnCreate.Text = "Create";
-            btnCreate.UseVisualStyleBackColor = true;
-            btnCreate.Click += btnCreate_Click;
+            button1.Location = new Point(615, 75);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 2;
+            button1.Text = "Delete";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(809, 75);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 3;
+            button2.Text = "Exit";
+            button2.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 178);
+            label2.Location = new Point(22, 81);
             label2.Name = "label2";
-            label2.Size = new Size(48, 20);
-            label2.TabIndex = 3;
-            label2.Text = "Ticket";
+            label2.Size = new Size(24, 20);
+            label2.TabIndex = 4;
+            label2.Text = "ID";
+            label2.UseMnemonic = false;
             // 
-            // cbTicket
+            // txtID
             // 
-            cbTicket.FormattingEnabled = true;
-            cbTicket.Location = new Point(95, 170);
-            cbTicket.Name = "cbTicket";
-            cbTicket.Size = new Size(191, 28);
-            cbTicket.TabIndex = 4;
+            txtID.Location = new Point(65, 74);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(125, 27);
+            txtID.TabIndex = 5;
+            txtID.TextChanged += textBox1_TextChanged_1;
             // 
-            // txtPrice
+            // btnShow
             // 
-            txtPrice.Location = new Point(95, 223);
-            txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(191, 27);
-            txtPrice.TabIndex = 5;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 230);
-            label3.Name = "label3";
-            label3.Size = new Size(41, 20);
-            label3.TabIndex = 6;
-            label3.Text = "Price";
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(12, 526);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 29);
-            btnDelete.TabIndex = 8;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Location = new Point(158, 445);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(94, 29);
-            btnUpdate.TabIndex = 9;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnClear
-            // 
-            btnClear.Location = new Point(158, 526);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(94, 29);
-            btnClear.TabIndex = 10;
-            btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(95, 115);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(191, 27);
-            textBox1.TabIndex = 11;
-            // 
-            // txtOrderId
-            // 
-            txtOrderId.AutoSize = true;
-            txtOrderId.Location = new Point(12, 122);
-            txtOrderId.Name = "txtOrderId";
-            txtOrderId.Size = new Size(24, 20);
-            txtOrderId.TabIndex = 12;
-            txtOrderId.Text = "ID";
+            btnShow.Location = new Point(377, 72);
+            btnShow.Name = "btnShow";
+            btnShow.Size = new Size(94, 29);
+            btnShow.TabIndex = 6;
+            btnShow.Text = "Show";
+            btnShow.UseVisualStyleBackColor = true;
+            btnShow.Click += btnShow_Click;
             // 
             // frmOrderManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(960, 601);
-            Controls.Add(txtOrderId);
-            Controls.Add(textBox1);
-            Controls.Add(btnClear);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnDelete);
-            Controls.Add(label3);
-            Controls.Add(txtPrice);
-            Controls.Add(cbTicket);
+            Controls.Add(btnShow);
+            Controls.Add(txtID);
             Controls.Add(label2);
-            Controls.Add(btnCreate);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(dtgvOrder);
             Margin = new Padding(2);
@@ -183,15 +134,11 @@
 
         private DataGridView dtgvOrder;
         private Label label1;
-        private Button btnCreate;
+        private Button button1;
+        private Button button2;
         private Label label2;
-        private ComboBox cbTicket;
-        private TextBox txtPrice;
-        private Label label3;
-        private Button btnDelete;
-        private Button btnUpdate;
-        private Button btnClear;
-        private TextBox textBox1;
-        private Label txtOrderId;
+        private TextBox txtID;
+        private Microsoft.Data.SqlClient.SqlCommandBuilder sqlCommandBuilder1;
+        private Button btnShow;
     }
 }

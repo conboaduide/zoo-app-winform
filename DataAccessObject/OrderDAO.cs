@@ -85,5 +85,11 @@ namespace DataAccessObject
                 db.SaveChanges();
             }
         }
+
+        public List<OrderDetail> GetOrderDetailsByOrderId(int orderId)
+        {
+            using var db = new ZooManagementContext();
+            return db.OrderDetails.Where(od => od.OrderId == orderId).ToList();
+        }
     }
 }

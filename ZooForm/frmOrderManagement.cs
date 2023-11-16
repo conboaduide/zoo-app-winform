@@ -45,18 +45,15 @@ namespace ZooForm
 
         private void frmOrderManagement_Load(object sender, EventArgs e)
         {
-            cbTicket.DataSource = _ticketRepository.GetTickets();
-            cbTicket.DisplayMember = "Type";
-            cbTicket.ValueMember = "Id";
             LoadOrders();
         }
 
         private void LoadOrders()
         {
-            BindingSource source2 = new BindingSource();
-            source2.DataSource = _orderRepository.GetOrderDetail();
+            BindingSource source = new BindingSource();
+            source.DataSource = _orderRepository.GetOrder();
             dtgvOrder.DataSource = null;
-            dtgvOrder.DataSource = source2;
+            dtgvOrder.DataSource = source;
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -66,29 +63,31 @@ namespace ZooForm
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dtgvOrder.SelectedRows.Count > 0)
+            /*try
             {
-                DialogResult result = MessageBox.Show("Are you sure you want to delete selected order(s)?",
-                    "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    foreach (DataGridViewRow row in dtgvOrder.SelectedRows)
-                    {
-                        Order order = (Order)row.DataBoundItem;
-                    }
-                    LoadOrders();
-                }
+                int id = int.Parse(txtID.Text);
+                //context.Database.ExecuteSqlRaw($"update Departments set DepartmentID = null where DepartmentID={id}");
+                _orderRepository.DeleteOrder(id);
+
+                var result = _orderRepository.GetOrder();
+                dtgvOrder.DataSource = null;    //vip, xoá lưới, lấy danh sách mới
+                dtgvOrder.DataSource = result;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
         }
 
         private void dtgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+            txtID.Text = dtgvOrder.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            OrderDetail order = new()
+            /*OrderDetail order = new()
             {
                 Price = decimal.Parse(txtPrice.ToString()),
                 TicketId = int.Parse(cbTicket.SelectedValue.ToString()),
@@ -96,7 +95,61 @@ namespace ZooForm
             _orderRepository.SaveOrderDetail(order);
             var result = _orderRepository.GetOrderDetail();
             dtgvOrder.DataSource = null;
-            dtgvOrder.DataSource = result;
+            dtgvOrder.DataSource = result;*/
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = int.Parse(txtID.Text);
+                
+                _orderRepository.DeleteOrder(id);
+
+                var result = _orderRepository.GetOrder();
+                dtgvOrder.DataSource = null;    
+                dtgvOrder.DataSource = result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int orderId = int.Parse(txtID.Text);
+
+                // Fetch order details based on the order ID
+                var orderDetails = _orderRepository.GetOrderDetailsByOrderId(orderId);
+
+                // Prepare the message to display order details
+                StringBuilder messageBuilder = new StringBuilder();
+                foreach (var detail in orderDetails)
+                {
+                    messageBuilder.AppendLine($"Order Id: {detail.OrderId}, Order Detail ID: {detail.Id}, Price: {detail.Price}, Ticket ID: {detail.TicketId}, Status: {detail.Status}");
+                    // Include other relevant details you want to display
+                }
+
+                // Show order details in a message box
+                MessageBox.Show(messageBuilder.ToString(), "Order Details");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Repository
         public void DeleteOrderDetail(int id);
         public void UpdateOrderDetail(OrderDetail order);
         public List<OrderDetail> GetOrderDetail();
+        public List<OrderDetail> GetOrderDetailsByOrderId(int id);
 
 
 
