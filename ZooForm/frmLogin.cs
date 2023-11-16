@@ -35,5 +35,10 @@ namespace ZooForm
                 MessageBox.Show("Invalid username or password.");
             }
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

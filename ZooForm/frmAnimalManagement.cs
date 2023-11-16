@@ -16,5 +16,10 @@ namespace ZooForm
         {
             InitializeComponent();
         }
+
+        private void frmAnimalManagement_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
