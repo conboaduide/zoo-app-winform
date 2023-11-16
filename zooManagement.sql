@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 drop database [ZooManagement]
 USE [master]
 GO
@@ -128,3 +129,6 @@ REFERENCES [dbo].[order] ([id])
 GO
 ALTER TABLE [dbo].[order] CHECK CONSTRAINT [FK_CustomerId_UserId]
 GO
+=======
+drop database ZooManagement
+>>>>>>> 66ae16fc8805599f030ee39e90b96dc916ee17f6

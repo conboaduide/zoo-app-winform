@@ -49,7 +49,7 @@ namespace ZooForm
 
         private void shopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmShop f = new frmShop();
+            frmShop f = new frmShop(user);
             f.Show();
             f.MdiParent = this;
         }
